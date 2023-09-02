@@ -13,7 +13,7 @@ const port = process.env.PORT || 4000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('e-commerce/api/v1', route);
+app.use('/api/v1/e-commerce', route);
 
 app.get('/', async (req: Request, res: Response): Promise<Response> => {
     return res.status(200).send({

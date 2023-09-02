@@ -43,7 +43,6 @@ export async function applyCouponAndGetAdjustment(
         } else if (coupon.discountType === DiscountTypeEnum.BEST) {
             const percentDiscount = (coupon.discountValue / 100) * totalPrice;
             discountAmount = Math.max(percentDiscount, coupon.discountValue);
-            console.log(discountAmount, 'Mixed');
         }
 
         const adjustedPrice = totalPrice - discountAmount;

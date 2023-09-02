@@ -2,7 +2,7 @@ import { Table, Model, Column, DataType } from 'sequelize-typescript';
 import { CouponCode, DiscountTypeEnum } from '../enum/enum';
 
 @Table({
-    timestamps: false,
+    timestamps: true,
     tableName: 'coupons',
 })
 export class Coupon extends Model {

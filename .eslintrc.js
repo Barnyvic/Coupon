@@ -1,0 +1,33 @@
+module.exports = {
+    env: {
+        browser: true,
+        es2021: true,
+    },
+    extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+    overrides: [],
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+    },
+    plugins: ['@typescript-eslint'],
+    rules: {
+        'linebreak-style': 0,
+        quotes: ['error', 'single'],
+        semi: ['error', 'always'],
+        'no-unused-vars': 'off',
+        'no-plusplus': 'off',
+        'no-undef': 'off',
+        'comma-dangle': 'off',
+        'consistent-return': 'off',
+        'no-tabs': 'off',
+        'prefer-const': 'off',
+        'max-len': 'off',
+        'global-require': 'off',
+        'import/no-unresolved': 'off',
+        'import/prefer-default-export': 'off',
+        'import/no-dynamic-require': 'off',
+        'no-console': 'off',
+        camelcase: 'off',
+    },
+};

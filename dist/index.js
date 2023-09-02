@@ -22,7 +22,7 @@ const app = (0, express_1.default)();
 const port = process.env.PORT || 4000;
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-app.use('e-commerce/api/v1', routes_1.default);
+app.use('/api/v1/e-commerce', routes_1.default);
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     return res.status(200).send({
         message: `Welcome to the cookbook API! \n Endpoints available at http://localhost:${port}/api/v1`,

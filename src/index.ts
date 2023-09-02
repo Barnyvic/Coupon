@@ -8,7 +8,7 @@ import route from './routes/routes';
 dotenv.config();
 
 const app: Application = express();
-const port = 3000;
+const port = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

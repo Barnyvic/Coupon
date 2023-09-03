@@ -8,12 +8,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.applyCouponController = void 0;
 const response_1 = require("../utils/response");
 const couponservice_1 = require("../service/couponservice");
 const cartservice_1 = require("../service/cartservice");
+const express_validator_1 = require("express-validator");
+const formatErrorMessage_1 = __importDefault(require("../utils/formatErrorMessage"));
 const applyCouponController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const errors = (0, express_validator_1.validationResult)(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            message: 'Input all required fields',
+            error: (0, formatErrorMessage_1.default)(errors.array()),
+        });
+    }
     const couponCode = req.params.coupon_code;
     try {
         const items = yield (0, cartservice_1.getCartItems)();

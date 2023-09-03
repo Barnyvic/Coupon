@@ -3,8 +3,18 @@ import { Request, Response } from 'express';
 import { handleError, errorResponse, successResponse } from '../utils/response';
 import { applyCouponAndGetAdjustment } from '../service/couponservice';
 import { getCartItems } from '../service/cartservice';
+import { validationResult } from 'express-validator';
+import formatValidationMessages from '../utils/formatErrorMessage';
 
 export const applyCouponController = async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            message: 'Input all required fields',
+            error: formatValidationMessages(errors.array()),
+        });
+    }
+
     const couponCode = req.params.coupon_code;
     try {
         const items = await getCartItems();
@@ -12,7 +22,7 @@ export const applyCouponController = async (req: Request, res: Response) => {
         const response = await applyCouponAndGetAdjustment(couponCode, items);
 
         if ('error' in response) {
-            return errorResponse(res, 400, response.error); 
+            return errorResponse(res, 400, response.error);
         }
 
         const { adjustedPrice, discountAmount } = response;
